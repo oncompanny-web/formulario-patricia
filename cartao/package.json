@@ -1,0 +1,14 @@
+{
+  "name": "cartao-presente-mpp",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gerar": "node gerar-cartao.mjs"
+  },
+  "devDependencies": {
+    "jsqr": "^1.4.0",
+    "pngjs": "^7.0.0",
+    "puppeteer-core": "^23.11.1",
+    "qrcode": "^1.5.4"
+  }
+}

@@ -105,3 +105,35 @@ coloque essa chave no site.
 
 Depois, importe a lista `emails-kiwify.txt` nos alunos do curso na Área de Membros da Kiwify
 (confira no painel da Kiwify o formato aceito na importação). A Kiwify envia o acesso por e-mail.
+
+## Produção atual
+
+- **Página:** https://oncompanny-web.github.io/formulario-patricia/ (GitHub Pages, repositório
+  `oncompanny-web/formulario-patricia`). Cada push em `main` publica de novo via
+  `.github/workflows/deploy.yml`.
+- **Banco:** projeto Supabase **NATAN** (`lmglzcqmcenpzhfyvoor`), tabela `public.inscricoes` e
+  função `public.solicitar_vaga`. Não foi criado projeto separado porque a organização tinha
+  faturas em atraso; o restante do projeto NATAN não foi alterado.
+- **Variáveis do build** ficam em GitHub → Settings → Secrets and variables → Actions →
+  *Variables*: `VITE_SUPABASE_URL` e `VITE_SUPABASE_PUBLISHABLE_KEY` (ambas públicas por natureza).
+  Nenhuma chave secreta está no site nem no Git.
+
+Para migrar depois para um projeto exclusivo: crie o projeto, rode a migração nele, troque as
+duas variáveis no GitHub e rode o workflow de novo (Actions → Publicar no GitHub Pages → Run workflow).
+
+## Cartão-presente com QR
+
+`cartao/gerar-cartao.mjs` gera o cartão de 55 × 85 mm e o QR, e confere a leitura dos QRs.
+
+```bash
+cd cartao && npm install && npm run gerar     # URL=https://... npm run gerar para outro endereço
+```
+
+Arquivos em `cartao/saida/`:
+
+| Arquivo | Uso |
+|---|---|
+| `cartao-presente-55x85mm.pdf` | impressão em tamanho final (55 × 85 mm) |
+| `cartao-presente-55x85mm-sangria-3mm.pdf` | 61 × 91 mm, para gráficas que pedem 3 mm de sangria |
+| `cartao-presente-600dpi.png` | cartão em alta resolução (1300 × 2006 px, 600 dpi) |
+| `qr-formulario-patricia.png` / `.svg` | QR separado, preto sobre branco (correção de erro Q) |
